@@ -1,21 +1,20 @@
 <template>
   <div id="devApp">
     <v-app>
-      <v-content>
+      <v-main>
         <v-container>
           <!-- selector -->
           <v-row>
             <v-col class="d-flex" sm="4">
-              <v-select
-                :items="items"
-                label="Select album (default: 1)"
-              ></v-select>
+             <v-btn v-on:click="numChange">
+                <v-select
+                  v-on:change="selectNewNum"
+                  v-model="newNum"
+                  v-bind:items="items"
+                  
+                ></v-select>
+              </v-btn>
             </v-col>
-            <!-- <div id="selector">
-              <select v-model="selected">
-                <option v-for="index in 10" :key="index" v-bind:value="index">{{index}}</option>
-              </select>
-            </div> -->
           </v-row>
 
           <br />
@@ -36,18 +35,11 @@
                   <div class="grey-text"></div>
                 </v-card-text>
 
-                <!-- <div class="album">
-                  <h2>{{content.title}}</h2>
-                  <p>id: {{content.id}}</p>
-                    <a target="_blank">
-                      <img :src="`${content.thumbnailUrl}`"/>
-                    </a>
-                </div>-->
               </v-card>
             </v-col>
           </v-row>
         </v-container>
-      </v-content>
+      </v-main>
     </v-app>
   </div>
 </template>
@@ -61,18 +53,20 @@ export default {
   created() {
     store.dispatch("fetchData");
   },
-  updated() {
-    store.dispatch("updateNum");
+  methods: {
+    selectNewNum() {
+      this.$emit('newNum')
+      store.dispatch("updateNum")  
+    }
   },
   data: () => ({
-    items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    newNum: 1
   }),
 };
 </script>
 
 <style>
-
-
 #devApp {
   padding: 5px;
 }
