@@ -1,21 +1,20 @@
 <template>
   <div id="devApp">
     <v-app>
-      <v-content>
+      <v-main>
         <v-container>
           <!-- selector -->
           <v-row>
             <v-col class="d-flex" sm="4">
-              <v-select
-                :items="items"
-                label="Select album (default: 1)"
-              ></v-select>
+             <!-- <v-btn v-on:click="numChange"> -->
+                <v-select
+                  v-on:change="selectNewNum"
+                  v-model="newNum"
+                  v-bind:items="items"
+                  value="item"
+                ></v-select>
+              <!-- </v-btn> -->
             </v-col>
-            <!-- <div id="selector">
-              <select v-model="selected">
-                <option v-for="index in 10" :key="index" v-bind:value="index">{{index}}</option>
-              </select>
-            </div> -->
           </v-row>
 
           <br />
@@ -36,18 +35,11 @@
                   <div class="grey-text"></div>
                 </v-card-text>
 
-                <!-- <div class="album">
-                  <h2>{{content.title}}</h2>
-                  <p>id: {{content.id}}</p>
-                    <a target="_blank">
-                      <img :src="`${content.thumbnailUrl}`"/>
-                    </a>
-                </div>-->
               </v-card>
             </v-col>
           </v-row>
         </v-container>
-      </v-content>
+      </v-main>
     </v-app>
   </div>
 </template>
@@ -61,18 +53,22 @@ export default {
   created() {
     store.dispatch("fetchData");
   },
-  updated() {
-    store.dispatch("updateNum");
+  methods: {
+    selectNewNum(newNum) {
+      console.log("clicking away", newNum);
+      store.dispatch("changeNum", newNum);
+      console.log("method in ex...vue done > changenum in actions.js done > updatenum in mutations done > no it will refetch")
+      store.dispatch("fetchData");
+    }
   },
   data: () => ({
-    items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    newNum: 1
   }),
 };
 </script>
 
 <style>
-
-
 #devApp {
   padding: 5px;
 }
