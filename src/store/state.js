@@ -1,6 +1,6 @@
 export const state = ({
   _albums: [],
-  num: 2,
+  num: 1,
   get albums() {
     return this._albums;
   },

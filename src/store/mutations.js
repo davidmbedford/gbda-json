@@ -6,6 +6,7 @@ export const mutations = {
     state.loading = loading
   },
   updateNum(state, num){
+    console.log(num)
     state.num = num
   }
 }
