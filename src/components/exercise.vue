@@ -6,14 +6,14 @@
           <!-- selector -->
           <v-row>
             <v-col class="d-flex" sm="4">
-             <v-btn v-on:click="numChange">
+             <!-- <v-btn v-on:click="numChange"> -->
                 <v-select
                   v-on:change="selectNewNum"
                   v-model="newNum"
                   v-bind:items="items"
                   
                 ></v-select>
-              </v-btn>
+              <!-- </v-btn> -->
             </v-col>
           </v-row>
 
@@ -54,9 +54,9 @@ export default {
     store.dispatch("fetchData");
   },
   methods: {
-    selectNewNum() {
-      this.$emit('newNum')
-      store.dispatch("updateNum")  
+    selectNewNum(newNum) {
+      console.log("clicking away", newNum)
+      store.dispatch("updateNum")
     }
   },
   data: () => ({
