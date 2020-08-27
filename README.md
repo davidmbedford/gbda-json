@@ -1,4 +1,5 @@
 # gbda-json
+This repo exists to store an interview assignment for GBDA. It is a Vue app that communicates with JSON placeholder to produce album images. Built with: Vue, Vuetify, Vuex, JS, HTML, and CSS. 
 
 ## Project setup
 ```
