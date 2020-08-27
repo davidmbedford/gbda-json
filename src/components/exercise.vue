@@ -11,7 +11,7 @@
                   v-on:change="selectNewNum"
                   v-model="newNum"
                   v-bind:items="items"
-                  
+                  value="item"
                 ></v-select>
               <!-- </v-btn> -->
             </v-col>
@@ -55,8 +55,10 @@ export default {
   },
   methods: {
     selectNewNum(newNum) {
-      console.log("clicking away", newNum)
-      store.dispatch("updateNum")
+      console.log("clicking away", newNum);
+      store.dispatch("changeNum", newNum);
+      console.log("method in ex...vue done > changenum in actions.js done > updatenum in mutations done > no it will refetch")
+      store.dispatch("fetchData");
     }
   },
   data: () => ({

@@ -10,8 +10,8 @@ export const actions = {
         commit('loadingData', false)
       })
     },
-  changeNum({commit}) {
-    let num = newNum
-    commit('updateNum', num)
+  changeNum({commit}, newNum) {
+    console.log("mutation trigerred", newNum)
+    commit('updateNum', newNum);
   }
 }
